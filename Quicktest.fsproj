@@ -7,4 +7,7 @@
   <ItemGroup>
     <Compile Include="src/main.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fable.Core" Version="4.0.0-snake-island-alpha-005" />
+  </ItemGroup>
 </Project>
