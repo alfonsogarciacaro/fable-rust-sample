@@ -64,12 +64,13 @@ module Imports =
         let emitUnit args: unit = nativeOnly
 
         let inline private import selector path =
-            emitUnit (JsInterop.import selector path)
+            emitUnit (Rust.import selector path)
 
+        // this adds some imports used in the bindings above
         let imports(): unit =
             import "Native_::array" "fable_library_rust"
             import "String_::string" "fable_library_rust"
-            import "std::io::BufReader" ""
+            import "std::io::BufRead" ""
 
 open std
 
@@ -77,7 +78,7 @@ open std
 let main _args =
     let path = "./data.txt"
 
-    WriteLine("\nFile {0}:\n", path)
+    WriteLine("\nFile {0}:", path)
 
     // read the whole file as UTF8 string (error if file is not UTF8)
     match fs.read_to_string(path) with
@@ -88,8 +89,6 @@ let main _args =
     match fs.read(path) with
     | Error e ->  WriteLine("File error: {0:?}", e)
     | Ok bytes -> WriteLine("File size: {0} bytes", bytes.Length)
-
-    WriteLine("\nFile lines:\n")
 
     // read file line by line
     match fs.File.open_(path) with
