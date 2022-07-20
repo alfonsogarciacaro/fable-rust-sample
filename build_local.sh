@@ -7,5 +7,7 @@ echo
 pushd ../Fable
 git checkout snake_island
 git pull
+./build.sh library-rust
 popd
+
 dotnet run -c release --project ../Fable/src/Fable.Cli -- watch --lang rust -e .rs --runWatch cargo run
