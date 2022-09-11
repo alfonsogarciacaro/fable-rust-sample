@@ -2,3 +2,4 @@ bin/
 obj/
 target/
 **/*.rs
+Cargo.lock

@@ -5,6 +5,8 @@
     <RollForward>Major</RollForward>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src/std.fs" />
+    <Compile Include="src/File.fs" />
     <Compile Include="src/main.fs" />
   </ItemGroup>
   <ItemGroup>
