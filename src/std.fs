@@ -40,17 +40,20 @@ module fs =
     [<Struct>]
     [<Erase; Emit("std::fs::File")>]
     type File =
-        [<Emit("std::fs::File::open($0.as_str())?")>]
+        [<Emit("std::fs::File::open($0.as_str()).map_err(|e| e.to_string())?")>]
         static member open_(path: string) = nativeOnly
 
-    [<Emit("std::fs::read($0.as_str())")>]
-    let read(path: string): Result<Vec<byte>, io.Error> = nativeOnly
+    [<Emit("std::fs::read($0.as_str()).map_err(|e| e.to_string())")>]
+    let read(path: string): Result<Vec<byte>, String> = nativeOnly
 
-    [<Emit("std::fs::read_to_string($0.as_str())")>]
-    let read_to_string(path: string): Result<String, io.Error> = nativeOnly
+    [<Emit("std::fs::read_to_string($0.as_str()).map_err(|e| e.to_string())")>]
+    let read_to_string(path: string): Result<String, String> = nativeOnly
 
 [<AutoOpen>]
 module Native =
+
+    [<Emit("$0.map_err(|e| e.to_string())")>]
+    let toStringError (s: Result<'T, io.Error>): Result<'T, String> = nativeOnly
 
     [<Emit("$0.lines().map(toString).collect()")>]
     let allLines (s: String): Vec<string> = nativeOnly
