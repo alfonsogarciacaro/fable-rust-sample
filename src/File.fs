@@ -30,7 +30,7 @@ let private unwrap (res: Result<String, String>) =
     | Error e -> failwith $"File error: {e}"
     | Ok line -> toString &line
 
-let private readLines (path: string): Result<string seq, io.Error> =
+let private readLines (path: string): Result<string seq, String> =
     let file = fs.File.open_(path)
     let reader = io.BufReader.new_(file)
     let xs = reader.lines() |> iter_to_seq |> Seq.map unwrap
