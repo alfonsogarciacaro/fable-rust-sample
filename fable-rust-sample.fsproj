@@ -10,6 +10,6 @@
     <Compile Include="src/main.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fable.Core" Version="4.0.0-*" />
+    <PackageReference Include="Fable.Core" Version="4.0.*" />
   </ItemGroup>
 </Project>
