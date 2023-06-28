@@ -61,7 +61,7 @@ module Native =
     [<Import("String_::toString", "fable_library_rust")>]
     let toString (v: String inref): string = nativeOnly
 
-    [<Import("Native_::arrayFrom", "fable_library_rust")>]
+    [<Import("NativeArray_::array_from", "fable_library_rust")>]
     let toArray (v: Vec<'T>): 'T[] = nativeOnly
 
     [<Import("Native_::iter_to_seq", "fable_library_rust")>]
